@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Contact Portal</title>
+<style>
+body {
+margin: 0;
+background: #0e0e0e;
+color: #ffffff;
+font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+}
+
+.container {
+background: #161616;
+padding: 40px;
+border-radius: 18px;
+max-width: 420px;
+width: 90%;
+text-align: center;
+box-shadow: 0 0 40px rgba(255,255,255,0.05);
+}
+
+.status {
+font-size: 14px;
+color: #888;
+margin-bottom: 10px;
+}
+
+.progress-bar {
+height: 6px;
+width: 100%;
+background: #222;
+border-radius: 4px;
+overflow: hidden;
+margin: 15px 0;
+}
+
+.progress {
+height: 100%;
+width: 0%;
+background: #ffffff;
+transition: width 2s ease;
+}
+
+h1 {
+font-size: 22px;
+margin: 15px 0;
+}
+
+button {
+margin-top: 20px;
+padding: 12px 20px;
+border-radius: 8px;
+border: none;
+font-weight: bold;
+cursor: pointer;
+background: white;
+color: black;
+}
+
+.hidden {
+display: none;
+}
+
+.photo {
+width: 80px;
+height: 80px;
+border-radius: 50%;
+object-fit: cover;
+margin: 15px auto;
+display: block;
+border: 2px solid #333;
+}
+
+.final-message {
+margin-top: 20px;
+font-size: 14px;
+color: #ff6b6b;
+}
+
+.bio-list {
+text-align: left;
+margin-top: 15px;
+font-size: 14px;
+}
+
+.back-text {
+margin-top: 25px;
+font-size: 11px;
+color: #777;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div id="phase1">
+<div class="status" id="statusText">Initializing secure connection...</div>
+<div class="progress-bar">
+<div class="progress" id="progressBar"></div>
+</div>
+<h1 id="mainMessage">Please wait...</h1>
+<button id="accessBtn" class="hidden">Request Access</button>
+</div>
+<div id="deniedSection" class="hidden">
+<div class="final-message">
+Access Denied.<br><br>
+This user is currently in a committed long-term relationship.<br><br>
+Security Level: End-to-End Encrypted<br>
+Status: Fully Invested
+</div>
+<button id="repBtn">Contact Official Representative</button>
+</div>
+<div id="repSection" class="hidden">
+<h1>Official Representative</h1>
+<img src="profile.jpg" class="photo">
+<div class="bio-list">
+• Height: Tall Enough<br>
+• Occupation: Overachiever<br>
+• Special Skills: Makes her laugh, fixes things, emotional support<br>
+• Years in Service: 4<br>
+• Contract Status: Long-Term
+</div>
+<div class="back-text">
+“If lost, return to boyfriend.”
+</div>
+</div>
+</div>
+<script>
+setTimeout(function() {
+document.getElementById("progressBar").style.width = "100%";
+}, 300);
+
+setTimeout(function() {
+document.getElementById("statusText").innerText = "Verifying availability...";
+document.getElementById("mainMessage").innerText = "Error 403 — Access Restricted";
+document.getElementById("accessBtn").classList.remove("hidden");
+}, 2200);
+
+document.getElementById("accessBtn").addEventListener("click", function() {
+document.getElementById("phase1").classList.add("hidden");
+document.getElementById("deniedSection").classList.remove("hidden");
+});
+
+document.getElementById("repBtn").addEventListener("click", function() {
+document.getElementById("deniedSection").classList.add("hidden");
+document.getElementById("repSection").classList.remove("hidden");
+});
+</script>
+</body>
+</html>
